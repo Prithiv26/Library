@@ -20,11 +20,13 @@ let read;
 
 let books = [];
 
-function Book(title,author,pages,read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book{
+    constructor(title,author,pages,read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }   
 }
 
 function addBook(book){
@@ -122,6 +124,15 @@ addButton.addEventListener("click",() => {
                     bookReferences = Array.from(bookReferences);
                     bookReferences.forEach((ref,index) => {
                         ref.setAttribute("id",String(index));
+                    });
+                    id = Number(id);
+                    let bookReadStatusReferences = document.querySelectorAll(".readButton");
+                    bookReadStatusReferences = Array.from(bookReadStatusReferences);
+                    bookReadStatusReferences.forEach((ref,index) => {
+                        if (index >= id){
+                            ref.classList.remove(`book${String(index + 1)}`);
+                            ref.classList.add(`book${String(index)}`);
+                        }
                     });
 
                 }
